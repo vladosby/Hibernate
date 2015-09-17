@@ -1,5 +1,6 @@
 package org.koushik.hibernate.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 /**
@@ -8,6 +9,7 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class Address {
     private String city;
+    @Column(name = "STREET")
     private String street;
 
     public String getCity() {

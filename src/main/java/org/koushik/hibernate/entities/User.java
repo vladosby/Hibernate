@@ -1,8 +1,11 @@
 package org.koushik.hibernate.entities;
 
+import org.hibernate.annotations.CollectionId;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by vladosby on 06.09.2015.
@@ -13,6 +16,11 @@ import java.util.Set;
 public class User extends BaseFields{
     private String name;
     @ElementCollection
+    @JoinTable(name = "ADDRESS",
+    joinColumns = @JoinColumn(name = "USER_ID"))
+    @GenericGenerator(name = "gen", strategy = "increment")
+    @CollectionId(columns = {@Column(name = "ADDR_ID")}, generator = "gen",
+            type = @Type(type = "long"))
     private List<Address> addresses;
 
     public String getName() {
