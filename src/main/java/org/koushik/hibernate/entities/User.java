@@ -13,9 +13,9 @@ import java.util.List;
 
 @Entity
 @Table(name = "USER")
-public class User extends BaseFields{
+public class User extends BaseEntity {
     private String name;
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @JoinTable(name = "ADDRESS",
     joinColumns = @JoinColumn(name = "USER_ID"))
     @GenericGenerator(name = "gen", strategy = "increment")

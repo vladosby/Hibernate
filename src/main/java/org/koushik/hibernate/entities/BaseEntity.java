@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by vladosby on 06.09.2015.
  */
 @MappedSuperclass
-public abstract class BaseFields {
+public abstract class BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
