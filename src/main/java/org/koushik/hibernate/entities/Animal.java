@@ -1,8 +1,8 @@
 package org.koushik.hibernate.entities;
 
-import org.hibernate.mapping.Collection;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 
 /**
  * Created by vladosby on 18.09.2015.
@@ -10,13 +10,24 @@ import javax.persistence.Entity;
 
 @Entity
 public class Animal extends BaseEntity{
-    private String type;
+    private String name;
 
-    public String getType() {
-        return type;
+    @OneToOne(cascade = CascadeType.ALL)
+    private AnimalType animalType;
+
+    public AnimalType getAnimalType() {
+        return animalType;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setAnimalType(AnimalType animalType) {
+        this.animalType = animalType;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
