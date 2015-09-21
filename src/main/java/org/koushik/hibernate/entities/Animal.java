@@ -2,6 +2,7 @@ package org.koushik.hibernate.entities;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 /**
@@ -13,6 +14,7 @@ public class Animal extends BaseEntity{
     private String name;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "TYPE_ID")
     private AnimalType animalType;
 
     public AnimalType getAnimalType() {
