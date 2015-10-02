@@ -35,6 +35,8 @@
         <mapping class="org.koushik.hibernate.entities.User" />
         <mapping class="org.koushik.hibernate.entities.Animal" />
         <mapping class="org.koushik.hibernate.entities.AnimalType" />
+        <mapping class="org.koushik.hibernate.entities.AnimalFeed" />
+        <mapping class="org.koushik.hibernate.entities.AnimalOwner" />
 
 
     </session-factory>

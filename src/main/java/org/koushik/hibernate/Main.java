@@ -4,10 +4,7 @@ package org.koushik.hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import org.koushik.hibernate.entities.Address;
-import org.koushik.hibernate.entities.Animal;
-import org.koushik.hibernate.entities.AnimalType;
-import org.koushik.hibernate.entities.User;
+import org.koushik.hibernate.entities.*;
 
 import java.util.*;
 
@@ -30,9 +27,11 @@ public class Main {
         session.getTransaction().commit();
         session.close();
 
-//        session = sessionFactory.openSession();
+        session = sessionFactory.openSession();
+        AnimalFeed animalFeed = session.get(AnimalFeed.class, 3);
+//        System.out.println(animalFeed.getAnimal().getName());
 //        User readUser = session.get(User.class, 1);
-//        session.close();
+        session.close();
 
 //        System.out.println(readUser.getAddresses().size());
         sessionFactory.close();
@@ -58,6 +57,27 @@ public class Main {
         AnimalType animalType = new AnimalType();
         animalType.setType("Type 1");
 
+        List<AnimalFeed> feeds = new ArrayList<>();
+        AnimalFeed animalFeed = new AnimalFeed();
+        AnimalFeed animalFeed2 = new AnimalFeed();
+        animalFeed.setName("onion");
+        feeds.add(animalFeed);
+        animalFeed2.setName("garlic");
+        feeds.add(animalFeed2);
+
+        animal.setFeeds(feeds);
+
         animal.setAnimalType(animalType);
+
+        List<AnimalOwner> animalOwners = new ArrayList<>();
+        AnimalOwner animalOwner = new AnimalOwner();
+        animalOwner.setName("first Owner");
+
+        AnimalOwner animalOwner2 = new AnimalOwner();
+        animalOwner.setName("second Owner");
+        animalOwners.add(animalOwner);
+        animalOwners.add(animalOwner2);
+
+        animal.setAnimalOwners(animalOwners);
     }
 }
