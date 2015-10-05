@@ -12,8 +12,7 @@ import java.util.Collection;
 public class Animal extends BaseEntity{
     private String name;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "TYPE_ID")
+    @OneToOne(cascade = CascadeType.ALL)    @JoinColumn(name = "TYPE_ID")
     private AnimalType animalType;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "animal")

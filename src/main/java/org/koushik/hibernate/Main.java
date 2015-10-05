@@ -28,7 +28,12 @@ public class Main {
         session.close();
 
         session = sessionFactory.openSession();
-        AnimalFeed animalFeed = session.get(AnimalFeed.class, 3);
+        Animal readAnimal = session.get(Animal.class, 1);
+        AnimalFeed af = (AnimalFeed)readAnimal.getFeeds().toArray()[0];
+        System.out.println(af.getName());
+        AnimalFeed anFe = session.get(AnimalFeed.class, 5);
+        System.out.println(anFe.getAnimal().getName());
+//        AnimalFeed animalFeed = session.get(AnimalFeed.class, 3);
 //        System.out.println(animalFeed.getAnimal().getName());
 //        User readUser = session.get(User.class, 1);
         session.close();
@@ -60,8 +65,10 @@ public class Main {
         List<AnimalFeed> feeds = new ArrayList<>();
         AnimalFeed animalFeed = new AnimalFeed();
         AnimalFeed animalFeed2 = new AnimalFeed();
+        animalFeed.setAnimal(animal);
         animalFeed.setName("onion");
         feeds.add(animalFeed);
+        animalFeed2.setAnimal(animal);
         animalFeed2.setName("garlic");
         feeds.add(animalFeed2);
 
