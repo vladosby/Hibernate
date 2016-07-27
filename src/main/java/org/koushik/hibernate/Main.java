@@ -28,10 +28,10 @@ public class Main {
         session.close();
 
         session = sessionFactory.openSession();
-        Animal readAnimal = session.get(Animal.class, 1);
-        AnimalFeed af = (AnimalFeed)readAnimal.getFeeds().toArray()[0];
+        Animal readAnimal = (Animal) session.get(Animal.class, 1);
+        AnimalFeed af = (AnimalFeed) readAnimal.getFeeds().toArray()[0];
         System.out.println(af.getName());
-        AnimalFeed anFe = session.get(AnimalFeed.class, 5);
+        AnimalFeed anFe = (AnimalFeed) session.get(AnimalFeed.class, 5);
         System.out.println(anFe.getAnimal().getName());
 //        AnimalFeed animalFeed = session.get(AnimalFeed.class, 3);
 //        System.out.println(animalFeed.getAnimal().getName());
@@ -42,7 +42,7 @@ public class Main {
         sessionFactory.close();
     }
 
-    public static void fillUser(User user){
+    public static void fillUser(User user) {
         user.setName("First User");
 
         Address address = new Address();
@@ -53,10 +53,10 @@ public class Main {
         address2.setCity("City2");
         address2.setStreet("Street2");
 
-        user.setAddresses(new ArrayList<>(Arrays.asList(address,address2)));
+        user.setAddresses(new ArrayList<>(Arrays.asList(address, address2)));
     }
 
-    public static void fillAnimal(Animal animal){
+    public static void fillAnimal(Animal animal) {
         animal.setName("First Animal");
 
         AnimalType animalType = new AnimalType();

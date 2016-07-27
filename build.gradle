@@ -1,0 +1,59 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'io.spring.gradle:dependency-management-plugin:0.5.4.RELEASE'
+    }
+}
+
+plugins {
+    id "de.aaschmid.cpd" version "0.5"
+}
+
+//todo
+group 'Hibernate'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'groovy'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    jcenter()
+}
+
+dependencyManagement {
+    imports {
+        mavenBom 'io.spring.platform:platform-bom:2.0.4.RELEASE'
+    }
+}
+
+dependencies {
+    compile 'org.springframework:spring-core'
+    compile 'org.springframework:spring-context'
+    //todo
+    compile 'commons-logging:commons-logging'
+    compile 'org.springframework.data:spring-data-mongodb'
+    compile 'org.codehaus.groovy:groovy'
+    compile 'org.hibernate:hibernate-core'
+}
+
+
+task  cpdCheckFailed{
+    onlyIf {
+        cpdCheck.getState().failure
+    }
+
+    doLast {
+        String path = cpdCheck.reports.text.destination.toString()
+        File file = new File(path)
+        println file.text
+    }
+}
+
+cpdCheck.finalizedBy cpdCheckFailed
